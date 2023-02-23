@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3616af2911f84d040bac78a561e5b822, type: 3}
+  m_Name: TerrainChunk
+  m_EditorClassIdentifier: 
+  meshObject:
+    assetPath: Assets/Data/Mesh.prefab
+    assetBundle: 
+  heightGeneratorType: 2
+  options:
+    sizeOptions:
+      width: 64
+      height: 64
+      cellSize: 1
+      offset: {x: 0.5, y: 0, z: 0.5}
+    heightMapOptions:
+      heightMap: {fileID: 2800000, guid: 3278ff4f07a31584dae3d8737f959bbc, type: 3}
+    noiseOptions:
+      scale: 20
+      octaves: 4
+      persistence: 0.5
+      lacunarity: 2
+      height: 5
