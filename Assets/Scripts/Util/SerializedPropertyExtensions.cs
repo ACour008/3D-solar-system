@@ -7,8 +7,8 @@
 //   Ref: http://answers.unity3d.com/questions/627090/convert-serializedproperty-to-custom-class.html
 // </author>
 
+#if UNITY_EDITOR
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -102,3 +102,4 @@ public static class SerializedPropertyExtensions {
         return false;
     }
 }
+#endif

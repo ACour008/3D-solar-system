@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshObject:
     assetPath: Assets/Data/Mesh.prefab
-    assetBundle: 
+    assetBundle: terrain
   heightGeneratorType: 2
   options:
     sizeOptions:
@@ -25,7 +25,7 @@ MonoBehaviour:
     heightMapOptions:
       heightMap: {fileID: 2800000, guid: 3278ff4f07a31584dae3d8737f959bbc, type: 3}
     noiseOptions:
-      scale: 20
+      scale: 10
       octaves: 4
       persistence: 0.5
       lacunarity: 2

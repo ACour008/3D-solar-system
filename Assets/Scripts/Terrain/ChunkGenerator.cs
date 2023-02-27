@@ -1,19 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
-public class ChunkGenerator : MonoBehaviour
+public class ChunkGenerator: MonoBehaviour
 {
-    public bool debug;
     private HeightGenerator generator;
-    public TerrainChunk chunkData;  // turn to property that Chunk Manager injects
+    private TerrainChunk chunkData;
 
     Mesh mesh;
     public Vector3[] vertices;
     public int[] triangles;
 
-    void Awake()
+    void SelectGenerator()
     {
         switch(chunkData.heightGeneratorType)
         {
@@ -29,19 +25,18 @@ public class ChunkGenerator : MonoBehaviour
         }
     }
 
-    void Start()
+    public void GenerateMesh(TerrainChunk data)
     {
-        var instance = GameObject.Instantiate<GameObject>((GameObject)AssetDatabase.LoadAssetAtPath(chunkData.meshObject.assetPath, typeof(GameObject)));
-        mesh = instance.GetComponent<MeshFilter>().mesh;
+        chunkData = data;
 
+        SelectGenerator();
         GenerateMesh();
-
-        vertices = mesh.vertices;
-        triangles = mesh.triangles;
     }
 
     void GenerateMesh()
     {
+        mesh = GetComponent<MeshFilter>().mesh;
+        
         int width = chunkData.options.sizeOptions.width;
         int height = chunkData.options.sizeOptions.height;
         float cellSize = chunkData.options.sizeOptions.cellSize;
@@ -50,6 +45,9 @@ public class ChunkGenerator : MonoBehaviour
         mesh.triangles = CreateTriangles(width, height);
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
+
+        vertices = mesh.vertices;
+        triangles = mesh.triangles;
     }
 
     Vector3[] CreateVertices(int width, int height, float size)
@@ -99,17 +97,4 @@ public class ChunkGenerator : MonoBehaviour
 
         return triangles;
     }
-
-    void OnDrawGizmos()
-    {
-        if (Application.isPlaying && debug)
-        {
-            foreach(Vector3 vertex in mesh.vertices)
-            {
-                Gizmos.DrawSphere(vertex, 0.1f);
-            }
-        }
-    }
-
-
 }
